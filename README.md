@@ -1,1 +1,3 @@
 I created useFetch hook to make fetching data easier in my React app. Instead of writing the same code every time I want to get data from an API, I put it in this hook. It takes a URL, fetches the data, and keeps track if it’s still loading or if there was an error. Then, my components can just use this hook to get the data and show loading or error messages automatically. 
+
+The useLocalStorage hook helps me save data in the browser’s localStorage so it stays even if I refresh the page. When I use this hook, it first checks if there’s already saved data under a specific key and uses it; if not, it starts with a default value. Then, every time the data changes, it updates the localStorage with the new value. 
