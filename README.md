@@ -2,6 +2,8 @@ In my App component, I set up the main structure of my Recipe Discovery app usin
 
 I created useFetch hook to make fetching data easier in my React app. Instead of writing the same code every time I want to get data from an API, I put it in this hook. It takes a URL, fetches the data, and keeps track if it’s still loading or if there was an error. Then, my components can just use this hook to get the data and show loading or error messages automatically. 
 
+In the Home component, I use my custom useFetch hook to get recipe categories from TheMealDB API. While the data is loading, I show a spinner to let the user know something is happening. If there is an error fetching the data, I display a friendly error message. Once the data loads successfully, I display a list of all recipe categories for the user to browse.
+
 The useLocalStorage hook helps me save data in the browser’s localStorage so it stays even if I refresh the page. When I use this hook, it first checks if there’s already saved data under a specific key and uses it; if not, it starts with a default value. Then, every time the data changes, it updates the localStorage with the new value. 
 
 I made a context called FavoritesContext that holds the list of favorite recipe IDs and functions to add, remove, or check favorites. It uses the useLocalStorage hook to save this list so the favorites stay even if the page is refreshed.
