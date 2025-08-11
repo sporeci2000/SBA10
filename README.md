@@ -6,6 +6,10 @@ In the Home component, I use my custom useFetch hook to get recipe categories fr
 
 In the CategoryPage component, I use the URL parameter categoryName to fetch a list of recipes that belong to that specific category from TheMealDB API. While the data is loading, a spinner is shown to keep the user informed. If there is an error during fetching, an error message appears. Once the recipes are successfully loaded, the component displays the category name as a title and shows all the recipes in a responsive grid layout. 
 
+In the Favorites component, I get the list of favorite recipe IDs from the global favorites context. Then, I fetch the full details of each favorite recipe from TheMealDB API using these IDs. While the data is loading, a loading message is shown. If there is an error fetching the data, an error message is displayed. If there are no favorite recipes yet, the user sees a prompt to add some favorites. 
+
+In the RecipeDetail component, I fetch detailed information about a single recipe based on the recipe ID from the URL. I use my custom useFetch hook to get the recipe data from the API and show loading or error messages as needed. The component displays the recipe’s name, image, ingredients, and instructions. I also use my global favorites context to let users add or remove this recipe from their list of favorites with a toggle button that changes its text and color based on whether the recipe is already favorited.
+
 The useLocalStorage hook helps me save data in the browser’s localStorage so it stays even if I refresh the page. When I use this hook, it first checks if there’s already saved data under a specific key and uses it; if not, it starts with a default value. Then, every time the data changes, it updates the localStorage with the new value. 
 
 I made a context called FavoritesContext that holds the list of favorite recipe IDs and functions to add, remove, or check favorites. It uses the useLocalStorage hook to save this list so the favorites stay even if the page is refreshed.

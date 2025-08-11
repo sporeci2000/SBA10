@@ -3,8 +3,13 @@ import { useParams } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 import { useFavorites } from "../context/FavoritesContext";
 
+
+
 export default function RecipeDetail() {
     const { recipeId } = useParams();
+
+    //Get favorites functions from context inside the component
+    const { addFavorite, removeFavorite, isFavorite } = useFavorites();
 
     //Fetch full details for one recipe by ID
     const { data, loading, error } = useFetch(
