@@ -1,18 +1,28 @@
-In my App component, I set up the main structure of my Recipe Discovery app using React Router. I put the Navbar so it shows on every page, helping users navigate and search recipes easily. Then, I defined different routes for each page like Home, Category, Recipe Detail, Favorites, and Search Results. This way, when users click links or search, the app shows the right page without reloading, making it a smooth single-page application experience.
+In my app, I set up the main structure using React Router. I included a Navbar that shows on every page to help users navigate and search recipes easily. I created routes for different pages like Home, Category, Recipe Detail, Favorites, and Search Results. This makes the app load pages smoothly without refreshing the whole browser, giving a better experience.
 
-I created useFetch hook to make fetching data easier in my React app. Instead of writing the same code every time I want to get data from an API, I put it in this hook. It takes a URL, fetches the data, and keeps track if it’s still loading or if there was an error. Then, my components can just use this hook to get the data and show loading or error messages automatically. 
+To make fetching data easier, I created a custom hook called useFetch. This hook takes a URL, fetches data from it, and keeps track of loading and error states. This way, my components don’t need to write the same fetch code again and again; they just use the hook to get data and show loading or error messages automatically.
 
-In the Home component, I use my custom useFetch hook to get recipe categories from TheMealDB API. While the data is loading, I show a spinner to let the user know something is happening. If there is an error fetching the data, I display a friendly error message. Once the data loads successfully, I display a list of all recipe categories for the user to browse.
+The Home page uses useFetch to get recipe categories from TheMealDB API. While the data is loading, a spinner shows to let the user know. If there’s an error, a friendly message appears. Once loaded, it shows a list of recipe categories.
 
-In the CategoryPage component, I use the URL parameter categoryName to fetch a list of recipes that belong to that specific category from TheMealDB API. While the data is loading, a spinner is shown to keep the user informed. If there is an error during fetching, an error message appears. Once the recipes are successfully loaded, the component displays the category name as a title and shows all the recipes in a responsive grid layout. 
+The CategoryPage uses the URL to get a category name, then fetches recipes from that category. It also shows a spinner while loading, error messages if something goes wrong, and finally displays the recipes in a nice grid layout.
 
-In the Favorites component, I get the list of favorite recipe IDs from the global favorites context. Then, I fetch the full details of each favorite recipe from TheMealDB API using these IDs. While the data is loading, a loading message is shown. If there is an error fetching the data, an error message is displayed. If there are no favorite recipes yet, the user sees a prompt to add some favorites. 
+The Favorites component gets favorite recipe IDs from a global context and fetches full details for each. It shows loading and error messages as needed. If there are no favorites yet, it encourages users to add some.
 
-In the RecipeDetail component, I fetch detailed information about a single recipe based on the recipe ID from the URL. I use my custom useFetch hook to get the recipe data from the API and show loading or error messages as needed. The component displays the recipe’s name, image, ingredients, and instructions. I also use my global favorites context to let users add or remove this recipe from their list of favorites with a toggle button that changes its text and color based on whether the recipe is already favorited.
+RecipeDetail shows detailed info about a selected recipe, including its name, image, ingredients, and instructions. It uses the favorites context to let users add or remove the recipe from favorites with a button that updates right away to reflect the change.
 
-In the SearchResults component, I get the search term from the URL query parameters and use my custom useFetch hook to fetch recipes from the API that match the search query. The component handles different states by showing messages while loading, if there’s an error, or if no recipes are found. When recipes are found, it displays them in a responsive grid with images and titles, and each recipe links to its detailed page.
+SearchResults takes the search term from the URL and fetches recipes that match it. It handles loading, errors, and the case when no results are found. Found recipes are shown in a grid with images and names, each linking to the detail page.
 
-The useLocalStorage hook helps me save data in the browser’s localStorage so it stays even if I refresh the page. When I use this hook, it first checks if there’s already saved data under a specific key and uses it; if not, it starts with a default value. Then, every time the data changes, it updates the localStorage with the new value. 
+The Navbar contains links to Home and Favorites, plus a search bar so users can type recipe names. I created a RecipeCard component to display each recipe in a clean, clickable card. Spinner and ErrorMessage components show loading and error states in a consistent way across the app.
 
-I made a context called FavoritesContext that holds the list of favorite recipe IDs and functions to add, remove, or check favorites. It uses the useLocalStorage hook to save this list so the favorites stay even if the page is refreshed.
-The FavoritesProvider component wraps the app and provides this favorites data and functions to all child components. There’s also a custom hook useFavorites to make it easy for any component to get access to the favorites without repeating code.
+To keep data saved even after refreshing the page, I made a useLocalStorage hook. It reads and writes data to the browser’s localStorage. The FavoritesContext uses this hook to store favorite recipe IDs and functions to add or remove favorites. The FavoritesProvider wraps the app and shares this data with all components, while the useFavorites hook makes it easy to use favorites anywhere.
+
+The hardest part of this project was the favorites feature. It was challenging because it needed to keep the list of favorite recipes saved even when the user refreshed or closed the browser, which meant using localStorage correctly. I had to make sure that whenever a user added or removed a favorite, the app updated the UI immediately so it felt smooth and responsive. Managing this state globally with React Context took some time to understand. Also, fetching the full details of all favorite recipes, based on just their IDs, required handling multiple API requests at once and showing loading or error messages properly. Getting all of these pieces to work together and keeping the code clean was the most difficult part of my app.
+
+RESOURCES:
+https://www.w3schools.com/react/react_router.asp   
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises   
+https://legacy.reactjs.org/docs/hooks-state.html   
+https://legacy.reactjs.org/docs/context.html   
+https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams   
+https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage   
+
