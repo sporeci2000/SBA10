@@ -1,6 +1,7 @@
 import React from "react";
 import useFetch from "../hooks/useFetch";
-import Spinner from "../components/Spinner"; 
+import Spinner from "../components/Spinner";
+import ErrorMessage from "../components/ErrorMessage";
 
 export default function Home() {
     const { data, loading, error } = useFetch(
@@ -11,7 +12,7 @@ export default function Home() {
     if (loading) return <Spinner />;
 
     //Show error message if fetch fails
-    if (error) return <p style={{ color: "red" }}>{error}</p>;
+    if (error) return <ErrorMessage message={error} />;
 
     return (
         <div>
