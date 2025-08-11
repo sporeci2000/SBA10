@@ -10,6 +10,8 @@ In the Favorites component, I get the list of favorite recipe IDs from the globa
 
 In the RecipeDetail component, I fetch detailed information about a single recipe based on the recipe ID from the URL. I use my custom useFetch hook to get the recipe data from the API and show loading or error messages as needed. The component displays the recipe’s name, image, ingredients, and instructions. I also use my global favorites context to let users add or remove this recipe from their list of favorites with a toggle button that changes its text and color based on whether the recipe is already favorited.
 
+In the SearchResults component, I get the search term from the URL query parameters and use my custom useFetch hook to fetch recipes from the API that match the search query. The component handles different states by showing messages while loading, if there’s an error, or if no recipes are found. When recipes are found, it displays them in a responsive grid with images and titles, and each recipe links to its detailed page.
+
 The useLocalStorage hook helps me save data in the browser’s localStorage so it stays even if I refresh the page. When I use this hook, it first checks if there’s already saved data under a specific key and uses it; if not, it starts with a default value. Then, every time the data changes, it updates the localStorage with the new value. 
 
 I made a context called FavoritesContext that holds the list of favorite recipe IDs and functions to add, remove, or check favorites. It uses the useLocalStorage hook to save this list so the favorites stay even if the page is refreshed.
