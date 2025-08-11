@@ -1,5 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Favorites from "./pages/Favorites";
+
 
 import Home from "./pages/Home";
 import CategoryPage from "./pages/CategoryPage";
@@ -17,6 +19,10 @@ export default function App() {
 
         {/* Recipe details page */}
         <Route path="/recipe/:recipeId" element={<RecipeDetail />} />
+
+
+        {/* Favorites page */}
+        <Route path="/favorites" element={<Favorites />} />
       </Routes>
     </Router>
   );
