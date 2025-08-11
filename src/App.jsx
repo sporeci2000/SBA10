@@ -12,11 +12,12 @@ import SearchResults from "./pages/Search";
 export default function App() {
   return (
     <Router>
-      {/* Navbar visible on all pages */}
+      {/* Navbar */}
       <Navbar />
 
       {/* Define routes */}
       <Routes>
+        
         {/* Home page with recipe categories */}
         <Route path="/" element={<Home />} />
 
@@ -29,6 +30,7 @@ export default function App() {
         {/* Favorites page */}
         <Route path="/favorites" element={<Favorites />} />
 
+        {/* Search */}
         <Route path="/search" element={<SearchResults />} />
       </Routes>
     </Router>
