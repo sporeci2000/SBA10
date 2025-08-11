@@ -1,24 +1,23 @@
 import React from "react";
-import useFetch from "./hooks/useFetch";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
+import Home from "./pages/Home";
+import CategoryPage from "./pages/CategoryPage";
+import RecipeDetail from "./pages/RecipeDetail";
 
 export default function App() {
-  //Fetch categories from TheMealDB API
-  const { data, loading, error } = useFetch(
-    "https://www.themealdb.com/api/json/v1/1/categories.php"
-  );
-
-  if (loading) return <p>Loading categories...</p>;
-  if (error) return <p style={{ color: "red" }}>{error}</p>;
-
   return (
-    <div>
-      <h1>Recipe Categories</h1>
-      <ul>
-        {data.categories.map((category) => (
-          <li key={category.idCategory}>{category.strCategory}</li>
-        ))}
-      </ul>
-    </div>
+    <Router>
+      <Routes>
+        {/* Home page with categories */}
+        <Route path="/" element={<Home />} />
+
+        {/* Recipes filtered by category */}
+        <Route path="/category/:categoryName" element={<CategoryPage />} />
+
+        {/* Recipe details page */}
+        <Route path="/recipe/:recipeId" element={<RecipeDetail />} />
+      </Routes>
+    </Router>
   );
 }
