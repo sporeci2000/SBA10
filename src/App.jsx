@@ -1,35 +1,27 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from "react";
+import useFetch from "./useFetch";
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
+  //Fetch data from API
+  const { data, loading, error } = useFetch("https://jsonplaceholder.typicode.com/posts");
 
+  //Show loading message while data is being fetched
+  if (loading) return <p>Loading...</p>;
+
+  //Show error if something went wrong
+  if (error) return <p>Error: {error}</p>;
+
+  //Show the fetched data
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div>
+      <h1>Posts</h1>
+      <ul>
+        {data && data.map((post) => (
+          <li key={post.id}>
+            <strong>{post.title}</strong>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 }
-
-export default App
