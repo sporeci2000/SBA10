@@ -7,7 +7,7 @@ const FavoritesContext = createContext();
 //Provider component
 export function FavoritesProvider({ children }) {
 
-    // Use custom hook to sync favorites with localStorage
+    //Use custom hook to sync favorites with localStorage
     const [favorites, setFavorites] = useLocalStorage("favorites", []);
 
     //Add recipe ID to favorites if not already added
