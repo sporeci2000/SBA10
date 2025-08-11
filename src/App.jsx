@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 import CategoryPage from "./pages/CategoryPage";
 import RecipeDetail from "./pages/RecipeDetail";
 import Favorites from "./pages/Favorites";
+import SearchResults from "./pages/Search";
 
 export default function App() {
   return (
@@ -27,6 +28,8 @@ export default function App() {
 
         {/* Favorites page */}
         <Route path="/favorites" element={<Favorites />} />
+
+        <Route path="/search" element={<SearchResults />} />
       </Routes>
     </Router>
   );
