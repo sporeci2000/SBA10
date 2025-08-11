@@ -1,4 +1,4 @@
-import React from "react";
+//import React from "react";
 import { useParams } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 import RecipeCard from "../components/RecipeCard";
@@ -8,15 +8,15 @@ import ErrorMessage from "../components/ErrorMessage";
 export default function CategoryPage() {
     const { categoryName } = useParams();
 
-    // Fetch recipes for the selected category
+    //Fetch recipes for the selected category
     const { data, loading, error } = useFetch(
         `https://www.themealdb.com/api/json/v1/1/filter.php?c=${categoryName}`
     );
 
-    // Show spinner while loading
+    //Show spinner while loading
     if (loading) return <Spinner />;
 
-    // Show error message if fetch fails
+    //Show error message if fetch fails
     if (error) return <ErrorMessage message={error} />;
 
     return (
